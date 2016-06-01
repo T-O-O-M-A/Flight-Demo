@@ -5,6 +5,7 @@ public class characterController : MonoBehaviour {
 
     public Rigidbody player;
     public Camera kamera;
+    float force = 50;
     Vector3 rychlost;
 	// Use this for initialization
 	void Start () {
@@ -16,5 +17,7 @@ public class characterController : MonoBehaviour {
         //player.transform.rotation= Quaternion.Euler(player.velocity - rychlost);
         rychlost = player.velocity;
         player.AddRelativeForce(Input.GetAxis("Horizontal")*force,0, Input.GetAxis("Vertical")*force);
+        kamera.transform.rotation = Quaternion.Lerp(player.rotation, Quaternion.Euler(-Input.mousePosition.y,Input.mousePosition.x,0), Time.deltaTime);
+        player.transform.up = player.velocity - rychlost;
     }
 }
