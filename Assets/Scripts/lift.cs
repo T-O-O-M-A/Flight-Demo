@@ -21,8 +21,9 @@ public class lift : MonoBehaviour {
     void FixedUpdate () {
         vRychlost = transform.InverseTransformDirection(kridlo.velocity).y;
         vztlak = /*-Mathf.Sign(vRychlost) * vRychlost * */-vRychlost * Mathf.Abs(tkridlo.lossyScale.x * tkridlo.lossyScale.z) * coeficient;
-        turbulence = Mathf.Lerp(turbulence, Random.Range(0, turbulenceFactor),Time.deltaTime);
-        vztlak *= turbulence;
+        //turbulence = Mathf.Lerp(turbulence, Random.Range(0, turbulenceFactor),Time.deltaTime);
+        //vztlak *= turbulence;
+        //vztlak *= vztlak*Mathf.Sign(vztlak);
         kridlo.AddRelativeForce(0,vztlak,0);
         if (log) { Debug.Log(turbulence); }
     }
